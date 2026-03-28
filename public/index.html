@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TFR Locator</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-left">
+      <span class="logo">✈ TFR Locator</span>
+      <span class="subtitle">Real-Time Temporary Flight Restrictions</span>
+    </div>
+    <div class="header-right">
+      <div id="location-display" class="location-display">Locating...</div>
+      <div class="radius-control">
+        <label for="radius-select">Search Radius</label>
+        <select id="radius-select">
+          <option value="50">50 NM</option>
+          <option value="100" selected>100 NM</option>
+          <option value="200">200 NM</option>
+          <option value="500">500 NM</option>
+        </select>
+      </div>
+      <button id="refresh-btn" class="btn-refresh" title="Refresh TFRs">
+        <span id="refresh-icon">↻</span> Refresh
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main layout ── -->
+  <div class="main">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span id="tfr-count" class="tfr-count">—</span>
+        <span class="sidebar-title">Active TFRs</span>
+        <span id="fetch-time" class="fetch-time"></span>
+      </div>
+
+      <div id="status-banner" class="status-banner hidden"></div>
+
+      <div id="tfr-list" class="tfr-list">
+        <div class="placeholder">
+          <div class="placeholder-icon">📡</div>
+          <p>Finding your location and loading TFRs…</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+  </div>
+
+  <!-- TFR Detail popup (bottom sheet on mobile) -->
+  <div id="detail-panel" class="detail-panel hidden">
+    <div class="detail-header">
+      <span id="detail-notam-id" class="detail-notam-id"></span>
+      <button id="detail-close" class="detail-close" title="Close">✕</button>
+    </div>
+    <div id="detail-body" class="detail-body"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+</html>
